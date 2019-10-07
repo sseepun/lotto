@@ -1,1 +1,1 @@
-# lotto
+# Thai Lottery Simulation
