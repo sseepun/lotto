@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CC Lotto Simulation</title>
+
+    <meta name="Description" content="CC Lotto จัดทำขึ้นเพื่อเป็นส่วนหนึ่งของการเรียนรู้สถิติและความน่าจะเป็น และเพื่อความบันเทิงเพียงเท่านั้น ขอให้สนุกกับการเล่น CC Lotto Simulation พร้อมกับการเรียนรู้สถิติและความน่าจะเป็นครับ">
+    <meta name="Keywords" content="big data, framework, database, analysis, sarun seepun">
+
+    <meta property="fb:app_id" content="540657433077575">
+    <meta property="og:url" content="https://classclever.com/projects/lotto/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CC Lotto Simulation">
+    <meta property="og:description" content="CC Lotto จัดทำขึ้นเพื่อเป็นส่วนหนึ่งของการเรียนรู้สถิติและความน่าจะเป็น และเพื่อความบันเทิงเพียงเท่านั้น ขอให้สนุกกับการเล่น CC Lotto Simulation พร้อมกับการเรียนรู้สถิติและความน่าจะเป็นครับ">
+    <meta property="og:image" content="https://classclever.com/projects/lotto/assets/lotto-bg2.jpg">
+
+    <link rel="shortcut icon" href="https://classclever.com/assets/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/preloader.css">
+
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/library/fancybox3/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/balloon.min.css">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/bootstrap-4.1.3.min.css">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/library/datatables-1.10.18/css/jquery.datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/hamburgers.css">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/jquery.taginput.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Kanit:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800,900">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i">
+
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/style-custom.css">
+
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/topnav.css">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/footer.css">
+
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/library/flatpickr-4.5.7/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://classclever.com/css/animate.min.css">    <link rel="stylesheet" type="text/css" href="css/lotto.css">
+
+    <link rel="stylesheet" type="text/css" href="css/lotto.css">
+    <style>
+        .lottery-panel > .lottery{background:url(assets/lotto-bg-gs.jpg);}
+        .lottery-panel > .lottery::before{background:rgba(255,255,255,.45);}
+    </style>
+</head>
+<body>
+
+    <div class="container header-container">
+        <a href="#" target="_blank">
+            <img class="app-logo" src="https://classclever.com/assets/logo_black.png">
+            <div class="app-desc">LOTTO</div>
+        </a>
+
+        <div class="social-container">
+            <a href="https://www.facebook.com/sarun.seepun" target="_blank">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="separator"></div>
+    </div>
+
+    <div class="container" style="position:relative; overflow:hidden;">
+        <div class="delimeter-md"></div>
+        <h1 id="period" style="width:100%; text-align:center;"></h1>
+        <div class="delimeter"></div>
+
+        <div class="lottery-panel-status">
+            <h2 style="width:100%; text-align:center;">ลอตเตอรี่งวดนี้หมดแล้ว</h2>
+        </div>
+        <div class="lottery-panel animated fadeInRight" id="lottery-panel"></div>
+        <div class="delimeter-md"></div>
+
+        <div class="btn-container" style="text-align:center;">
+            <button id="pick-all-lotteries" class="btn btn-primary-inverse" style="float:none;">เหมาหมดแผง</button>
+            <button id="new-lotteries" class="btn btn-primary-inverse" style="float:none;">ขอแผงใหม่</button>
+            <a href="#" id="prize-announce-btn" class="btn btn-primary" style="float:none;">พร้อมวัดดวง !</a>
+        </div>
+    </div>
+
+    <div class="delimeter-xl"></div><hr>
+    <div class="container data-viz-container">
+        <h1 style="width:100%; text-align:center;">วิเคราะห์การเงิน</h1>
+        <div class="delimeter-lg"></div>
+        <div class="row">
+            <div class="col-md-8 col-lg-8" style="margin-bottom:15px;">
+                <canvas id="money-chart" width="600px" height="280px"></canvas>
+            </div>
+            <div class="col-md-4 col-lg-4" style="margin-bottom:15px;">
+                <canvas id="ratio-donut" width="600px" height="280px"></canvas>
+            </div>
+            <div class="separator"></div>
+
+            <div class="col-sm-6 col-md-6 col-lg-6" style="margin-bottom:15px;">
+                <canvas id="lottery-num-chart" width="600px" height="280px"></canvas>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6" style="margin-bottom:15px;">
+                <canvas id="won-chart" width="600px" height="280px"></canvas>
+            </div>
+            <div class="separator"></div>
+        </div>
+    </div>
+
+    <div class="lottery-prize-container">
+        <div class="container">
+            <div class="lottery-prize" id="lottery-prize"></div>
+            <div class="btn-container" style="text-align:center;">
+                <a href="#" class="btn btn-primary lottery-prize-summary" style="float:none;"
+                data-fancybox="" data-animation-duration="300" data-src="#prize-summary-modal">สรุปผลงวดนี้ !</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="lottor-container">
+        <div class="container" style="position:relative;">
+            <a class="toggle-lottor" href="#">
+                <img src="assets/menu-icon.png" style="display:block; width:106px; height:9px; margin:5px 7px; opacity:.25;">
+            </a>
+
+            <h3 style="float:left;">ลอตเตอรี่ที่ซื้อ (<span class="lottery-num"></span>)</h3>
+            <h3 class="text-green" style="float:right;">
+                <i class="fa fa-money" aria-hidden="true" style="margin-right:7px;"></i>
+                <span id="money"></span>
+            </h3>
+
+            <div class="delimeter"></div>
+            <div class="lottor" id="lottor"></div>
+        </div>
+    </div>
+
+
+    <div id="prize-summary-modal" class="container two-third animated fadeInDown" style="display:none;">
+        <div style="padding:25px 5px 20px 5px;">
+            <div class="summary"></div>
+            
+            <div class="delimeter-xs"></div>
+            <div class="btn-container">
+                <!-- <div class="btn btn-primary-inverse" data-fancybox-close>ตรวจผลใหม่</div> -->
+                <a href="#" class="btn btn-primary" id="lottery-next-period" data-fancybox-close>เริ่มงวดต่อไป !</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="broke-modal" class="fancybox-container" style="transition-duration:300ms; display:none;">
+        <div class="fancybox-bg"></div>
+        <div class="fancybox-inner">
+            
+            <div class="fancybox-stage">
+                <div class="fancybox-slide fancybox-slide--html fancybox-slide--current fancybox-slide--complete" style="display:flex; align-items:center;">
+                    <div class="container two-third animated fadeInDown fancybox-content" style="display:inline-block;">
+                        <div style="padding:25px 5px 20px 5px;">
+                            <h2 class="primary-color broke-title"></h2>
+                            <div class="delimeter-xs"></div><hr>
+                            
+                            <?php if($saveLog){?>
+                                <div class="leaderboard-comp">
+                                    <div class="delimeter-sm"></div>
+                                    <h4>คุณถูกรางวัลรวม <span class="total_prize text-primary"></span> บาท!</h4>
+                                    <div class="delimeter-md"></div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-7 form-group">
+                                            <input type="text" id="name" id="name" placeholder="ชื่อใน Leaderboard" maxlength="64">
+                                            <div class="delimeter-xs"></div>
+                                            <label class="text-red name-err" style="display:none; font-weight:500; font-size:16px;">
+                                                กรุณาใส่ชื่อของคุณที่นี่ก่อน...
+                                            </label>
+                                            <input type="hidden" name="total_prize" id="total_prize" value="0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="leaderboard-comp-inverse" style="display:none;">
+                                    <div class="delimeter-sm"></div>
+                                    <h4 class="text-primary">ชื่อคุณถูกบันทึกไว้ใน Leaderboard แล้ว !</h4>
+                                </div>
+                            <?php }?>
+
+                            <div class="btn-container">
+                                <?php if($saveLog){?>
+                                    <a href="#" class="btn btn-primary-inverse leaderboard-comp" id="leaderboard-save-btn">
+                                        บันทึกลง Leaderboard
+                                    </a>
+                                <?php }?>
+                                <a href="#" id="broke-btn" class="btn btn-primary-inverse leaderboard-comp">กลับสู่เกมส์ Lotto</a>
+                                <a href="<?php echo BASE_URL; ?>projects/lotto/" class="btn btn-primary">เริ่มเล่นใหม่</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fancybox-caption"></div>
+        </div>
+    </div>
+
+    <div id="broke-last-chance-modal" class="fancybox-container" style="transition-duration:300ms; display:none;">
+        <div class="fancybox-bg"></div>
+        <div class="fancybox-inner">
+            
+            <div class="fancybox-stage">
+                <div class="fancybox-slide fancybox-slide--html fancybox-slide--current fancybox-slide--complete" style="display:flex; align-items:center;">
+                    <div class="container two-third animated fadeInDown fancybox-content" style="display:inline-block;">
+                        <div style="padding:25px 5px 20px 5px;">
+                            <h2 class="primary-color">
+                                เงินของคุณ...หมดแล้ว...
+                            </h2>
+                            <div class="delimeter-xs"></div><hr><div class="delimeter-sm"></div>
+                            <h4 class="text-primary">แต่อย่าเพิ่งถอดใจ !!! คุณยังมีลอตเตอรี่เหลืออยู่ในมือ</h4>
+
+                            <div class="delimeter-sm"></div>
+                            <div class="btn-container">
+                                <a href="#" class="btn btn-primary prize-announce-btn">พร้อมวัดดวง !</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fancybox-caption"></div>
+        </div>
+    </div>
+
+
+    <script>
+        function _(el){return document.querySelector(el);}
+        function updateLottoDatabase(){}
+    </script>
+    <script type="text/javascript" src="https://classclever.com/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://classclever.com/library/fancybox3/dist/jquery.fancybox.min.js"></script>
+
+    <script type="text/javascript" src="js/Chart.min.js"></script>
+    <script type="text/javascript" src="js/Chart-utility.js"></script>
+    <script type="text/javascript" src="js/lotto.min.js"></script>
+    <script>
+        var startPeriod = 1,
+            startMoney = 15000;
+
+        var lottor = new Lottor('#lottor', startMoney),
+            lottoryPrize = new LotteryPrize('#lottery-prize', startPeriod);
+        var lotteryGame = new LotteryGame('#lottery-panel', lottor, lottoryPrize);
+        lotteryGame.setup();
+    </script>
+    <script type="text/javascript" src="js/lotto-charts.min.js"></script>
+</body>
+</html>
